@@ -43,4 +43,6 @@ EXPOSE 22 80
 CMD ["/usr/bin/supervisord"]
 )
 
-save(result, 'ruby2.3-a')
+save result, 'ruby2.3-a/Dockerfile' do
+  `cd ruby2.3-a && ln -s ../files .`
+end
