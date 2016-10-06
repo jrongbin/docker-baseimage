@@ -1,0 +1,7 @@
+RUN set -ex \
+  && apt-get install -y --no-install-recommends openssh-server \
+  && mkdir -p /var/run/sshd \
+  && { \
+    echo '[program:sshd]'; \
+    echo 'command=/usr/sbin/sshd -D'; \
+  } >> /etc/supervisor/conf.d/sshd.conf

@@ -1,0 +1,9 @@
+RUN mkdir -p /root/.ssh /root/.bash.d
+ADD ./files/ssh/config /root/.ssh/
+ADD ./files/bash.d/*.bash /root/.bash.d/
+
+RUN set -ex \
+  && { \
+    echo 'source ~/.bash.d/10_ssh-agent.bash'; \
+    echo 'source ~/.bash.d/66_custom.bash'; \
+  } >> /root/.bashrc

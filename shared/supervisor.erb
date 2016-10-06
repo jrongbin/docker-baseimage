@@ -1,0 +1,7 @@
+RUN set -ex \
+  && apt-get install -y --no-install-recommends supervisor \
+  && mkdir -p /var/log/supervisor \
+  && { \
+    echo '[supervisord]'; \
+    echo 'nodaemon=true'; \
+  } >> /etc/supervisor/conf.d/supervisord.conf

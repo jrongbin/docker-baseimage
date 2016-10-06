@@ -1,0 +1,3 @@
+RUN set -ex \
+  && echo "Asia/Shanghai" > /etc/timezone \
+  && dpkg-reconfigure -f noninteractive tzdata

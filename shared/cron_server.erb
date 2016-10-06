@@ -1,0 +1,6 @@
+RUN set -ex \
+  && apt-get install -y --no-install-recommends cron \
+  && { \
+    echo '[program:cron]'; \
+    echo 'command=/usr/sbin/cron -f'; \
+  } >> /etc/supervisor/conf.d/cron.conf
