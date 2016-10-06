@@ -116,15 +116,18 @@ RUN set -ex \
 # TIMEZONE END
 
 # SSH_AGENT BEGIN
-RUN mkdir -p /root/.ssh /root/.bash.d
-ADD ./files/ssh/config /root/.ssh/
-ADD ./files/bash.d/*.bash /root/.bash.d/
-
 RUN set -ex \
+  && mkdir -p /root/.ssh /root/.bash.d \
+  && { \
+    echo 'Host *'; \
+    echo 'ServerAliveInterval=15'; \
+    echo 'ServerAliveCountMax=6'; \
+    echo 'ForwardAgent yes'; \
+  } >> /root/.ssh/config \
   && { \
     echo 'source ~/.bash.d/10_ssh-agent.bash'; \
-    echo 'source ~/.bash.d/66_custom.bash'; \
-  } >> /root/.bashrc
+  } >> /root/.bashrc \
+  && cd /root/.bash.d && { curl -SLO https://raw.githubusercontent.com/jrongbin/docker_baseimage/master/files/bash.d/10_ssh-agent.bash; cd - }
 
 # SSH_AGENT END
 
@@ -134,6 +137,11 @@ RUN set -ex \
   && rm -rf /var/lib/apt/lists/*
 
 # DEBIAN_CLEAN END
+
+RUN set -ex \
+  && { \
+    echo 'export TERM=xterm'; \
+  } >> /root/.bashrc
 
 RUN mkdir /app
 WORKDIR /app

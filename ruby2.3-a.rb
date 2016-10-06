@@ -32,6 +32,11 @@ FROM ruby:2.3.1
 
 {{debian_clean}}
 
+RUN set -ex \
+  && { \
+    echo 'export TERM=xterm'; \
+  } >> /root/.bashrc
+
 RUN mkdir /app
 WORKDIR /app
 VOLUME /app
@@ -40,6 +45,4 @@ EXPOSE 22 80
 CMD ["/usr/bin/supervisord"]
 )
 
-save result, 'ruby2.3-a/Dockerfile' do
-  `cd ruby2.3-a && ln -s ../files .`
-end
+save(result, 'ruby2.3-a/Dockerfile')

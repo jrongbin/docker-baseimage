@@ -1,15 +1,11 @@
 require 'erb'
 require 'fileutils'
 
-def save(text, filename, &block)
+def save(text, filename)
   _, dir = filename.reverse.split('/', 2).map { |i| i.reverse }
   FileUtils.mkdir_p "./#{dir}"
 
   File.write("./#{filename}", ERB.new(sub_strings(text)).result)
-
-  if block_given?
-    yield
-  end
 end
 
 def sub_strings(input_string)

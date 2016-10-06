@@ -1,4 +1,0 @@
-Host *
-ServerAliveInterval=15
-ServerAliveCountMax=6
-ForwardAgent yes
