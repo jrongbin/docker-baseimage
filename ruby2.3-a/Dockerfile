@@ -126,8 +126,12 @@ RUN set -ex \
   } >> /root/.ssh/config \
   && { \
     echo 'source ~/.bash.d/10_ssh-agent.bash'; \
-  } >> /root/.bashrc \
-  && cd /root/.bash.d && { curl -SLO https://raw.githubusercontent.com/jrongbin/docker_baseimage/master/files/bash.d/10_ssh-agent.bash; cd - }
+  } >> /root/.bashrc
+
+RUN set -ex \
+  && cd /root/.bash.d \
+  && curl -SLO https://raw.githubusercontent.com/jrongbin/docker_baseimage/master/files/bash.d/10_ssh-agent.bash \
+  && cd -
 
 # SSH_AGENT END
 
