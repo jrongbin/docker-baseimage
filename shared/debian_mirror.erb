@@ -1,4 +1,3 @@
 RUN set -ex \
   && sed -i 's/security.debian.org/<%= debian_mirror %>\/debian-security/g' /etc/apt/sources.list \
-  && sed -i 's/httpredir.debian.org/<%= debian_mirror %>/g' /etc/apt/sources.list \
-  && apt-get update
+  && sed -i 's/httpredir.debian.org/<%= debian_mirror %>/g' /etc/apt/sources.list
