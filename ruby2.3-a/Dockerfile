@@ -60,6 +60,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
             gettext-base \
   && {\
     echo '[program:nginx]'; \
+    echo 'user=nginx'; \
     echo 'command=nginx -g "daemon off;"'; \
   } >> /etc/supervisor/conf.d/nginx.conf
 
