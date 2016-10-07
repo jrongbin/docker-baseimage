@@ -10,7 +10,7 @@ FROM ruby:2.3.1
 # expose 22 80
 # Node 6.7.0
 # Ngnix 1.11.4
-# git-core vim htop
+# git-core vim htop screen
 
 {{debian_dpkgs}}
 
