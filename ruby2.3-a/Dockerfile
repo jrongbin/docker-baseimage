@@ -7,7 +7,7 @@ FROM ruby:2.3.1
 # DEBIAN_DPKGS BEGIN
 RUN set -ex \
   && apt-get update \
-  && apt-get install -y --no-install-recommends git-core vim htop
+  && apt-get install -y --no-install-recommends git-core vim htop screen
 
 # DEBIAN_DPKGS END
 

@@ -3,7 +3,7 @@ require './tool'
 
 node_version ='6.7.0'
 nginx_version = '1.11.4-1~jessie'
-dpkgs = %w( git-core vim htop )
+dpkgs = %w( git-core vim htop screen )
 
 result = %q(
 FROM ruby:2.3.1
