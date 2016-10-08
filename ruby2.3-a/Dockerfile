@@ -1,8 +1,7 @@
 FROM ruby:2.3.1
 # expose 22 80
 # Node 6.7.0
-# Ngnix 1.11.4
-# git-core vim htop screen
+# nginx git-core vim htop screen
 
 # DEBIAN_DPKGS BEGIN
 RUN set -ex \
@@ -44,23 +43,14 @@ RUN set -ex \
 # CRON_SERVER END
 
 # NGINX_SERVER BEGIN
-ENV NGINX_VERSION 1.11.4-1~jessie
-
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-  && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
+  && echo "deb http://nginx.org/packages/debian/ $(awk -F"[)(]+" '/VERSION=/ {print $2}' /etc/os-release) nginx" >> /etc/apt/sources.list \
   && apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
             ca-certificates \
-            nginx=${NGINX_VERSION} \
-            nginx-module-xslt \
-            nginx-module-geoip \
-            nginx-module-image-filter \
-            nginx-module-perl \
-            nginx-module-njs \
-            gettext-base \
+            nginx
   && {\
     echo '[program:nginx]'; \
-    echo 'user=nginx'; \
     echo 'command=nginx -g "daemon off;"'; \
   } >> /etc/supervisor/conf.d/nginx.conf
 
