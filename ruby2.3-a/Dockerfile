@@ -1,6 +1,6 @@
 FROM ruby:2.3.1
 # expose 22 80
-# Node 6.7.0
+# Node 6.8.1
 # nginx git-core vim htop screen
 
 # DEBIAN_DPKGS BEGIN
@@ -48,8 +48,8 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
   && apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
             ca-certificates \
-            nginx
-  && {\
+            nginx \
+  && { \
     echo '[program:nginx]'; \
     echo 'command=nginx -g "daemon off;"'; \
   } >> /etc/supervisor/conf.d/nginx.conf
@@ -57,7 +57,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 # NGINX_SERVER END
 
 # NODE6 BEGIN
-ENV NODE_VERSION 6.7.0
+ENV NODE_VERSION 6.8.1
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_HOME /usr/local/node
 ENV NODE_BIN="$NODE_HOME/bin"
