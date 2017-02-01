@@ -5,7 +5,7 @@ node_version ='6.9.4'
 dpkgs = %w( git-core vim htop screen apt-transport-https )
 
 result = %q(
-FROM ruby:2.3
+FROM ruby:2.4
 
 {{debian_dpkgs}}
 
@@ -40,4 +40,4 @@ EXPOSE 22 80
 CMD ["/usr/bin/supervisord"]
 )
 
-save(result, 'ruby2.3-a/Dockerfile')
+save(result, 'ruby2.4-a/Dockerfile')

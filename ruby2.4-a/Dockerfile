@@ -1,4 +1,4 @@
-FROM ruby:2.3
+FROM ruby:2.4
 
 # DEBIAN_DPKGS BEGIN
 RUN set -ex \
