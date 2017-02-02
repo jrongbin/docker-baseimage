@@ -19,6 +19,8 @@ FROM ruby:2.4
 
 {{node6}}
 
+{{yarn}}
+
 {{locale}}
 
 {{timezone}}

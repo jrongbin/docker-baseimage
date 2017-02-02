@@ -46,6 +46,12 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
   && apt-get install --no-install-recommends --no-install-suggests -y \
             ca-certificates \
             nginx \
+            nginx-module-xslt \
+            nginx-module-geoip \
+            nginx-module-image-filter \
+            nginx-module-perl \
+            nginx-module-njs \
+            gettext-base \
   && { \
     echo '[program:nginx]'; \
     echo 'command=nginx -g "daemon off;"'; \
@@ -84,6 +90,14 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 ENV PATH $NODE_BIN:$PATH
 
 # NODE6 END
+
+# YARN BEGIN
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get install --no-install-recommends yarn
+
+# YARN END
 
 # LOCALE BEGIN
 RUN set -ex \
