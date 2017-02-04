@@ -3,7 +3,7 @@ FROM ruby:2.4
 # DEBIAN_DPKGS BEGIN
 RUN set -ex \
   && apt-get update \
-  && apt-get install -y --no-install-recommends git-core vim htop screen apt-transport-https
+  && apt-get install -y --no-install-recommends apt-transport-https git-core htop screen vim
 
 # DEBIAN_DPKGS END
 
@@ -144,10 +144,14 @@ RUN set -ex \
 
 # DEBIAN_CLEAN END
 
+# DOTBASHRC BEGIN
 RUN set -ex \
   && { \
-    echo 'export TERM=xterm'; \
+    echo "export TERM=xterm"; \
+    echo "export PATH=$(echo $PATH)"; \
   } >> /root/.bashrc
+
+# DOTBASHRC END
 
 RUN mkdir /app
 WORKDIR /app

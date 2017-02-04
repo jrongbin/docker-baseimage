@@ -2,7 +2,7 @@
 require './tool'
 
 node_version ='6.9.4'
-dpkgs = %w( git-core vim htop screen apt-transport-https )
+dpkgs = %w( vim )
 
 result = %q(
 FROM ruby:2.3
@@ -29,10 +29,7 @@ FROM ruby:2.3
 
 {{debian_clean}}
 
-RUN set -ex \
-  && { \
-    echo 'export TERM=xterm'; \
-  } >> /root/.bashrc
+{{dotbashrc}}
 
 RUN mkdir /app
 WORKDIR /app
