@@ -35,7 +35,7 @@ RUN mkdir /app
 WORKDIR /app
 VOLUME /app
 
-EXPOSE 22 80
+EXPOSE 22 80 3000
 CMD ["/usr/bin/supervisord"]
 )
 
