@@ -1,9 +1,9 @@
 FROM ruby:2.3
 
+RUN apt-get update
+
 # DEBIAN_DPKGS BEGIN
-RUN set -ex \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends apt-transport-https git-core htop screen vim
+RUN apt-get install -y --no-install-recommends apt-transport-https git-core htop screen vim
 
 # DEBIAN_DPKGS END
 
@@ -136,6 +136,13 @@ RUN set -ex \
   && cd -
 
 # SSH_AGENT END
+
+# DEBIAN_MIRROR BEGIN
+RUN set -ex \
+  && sed -i 's/security.debian.org/mirrors.aliyun.com\/debian-security/g' /etc/apt/sources.list \
+  && sed -i 's/httpredir.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
+
+# DEBIAN_MIRROR END
 
 # DEBIAN_CLEAN BEGIN
 RUN set -ex \

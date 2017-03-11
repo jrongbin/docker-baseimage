@@ -1,11 +1,14 @@
 #!/usr/bin/env ruby
 require './tool'
 
+debian_mirror='mirrors.aliyun.com'
 node_version ='6.9.4'
 dpkgs = %w( vim )
 
 result = %q(
 FROM ruby:2.3
+
+RUN apt-get update
 
 {{debian_dpkgs}}
 
@@ -26,6 +29,8 @@ FROM ruby:2.3
 {{timezone}}
 
 {{ssh_agent}}
+
+{{debian_mirror}}
 
 {{debian_clean}}
 

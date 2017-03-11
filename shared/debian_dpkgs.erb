@@ -1,3 +1,1 @@
-RUN set -ex \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends apt-transport-https git-core htop screen <%= dpkgs.join(" ") %>
+RUN apt-get install -y --no-install-recommends apt-transport-https git-core htop screen <%= dpkgs.join(" ") %>
