@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 require './tool'
 
-debian_mirror='mirrors.aliyun.com'
-node_version ='6.9.4'
-dpkgs = %w( vim )
+dpkgs = %w( vim rsync libmysqlclient-dev mysql-client bzip2 libfontconfig )
 
 result = %q(
 FROM ruby:2.3
@@ -20,17 +18,13 @@ RUN apt-get update
 
 {{nginx_server}}
 
-{{node6}}
-
-{{yarn}}
+{{node6_lts}}
 
 {{locale}}
 
 {{timezone}}
 
 {{ssh_agent}}
-
-{{debian_mirror}}
 
 {{debian_clean}}
 
@@ -40,8 +34,9 @@ RUN mkdir /app
 WORKDIR /app
 VOLUME /app
 
-EXPOSE 22 80 3000
-CMD ["/usr/bin/supervisord"]
+EXPOSE 22 80
+
+CMD ["sh", "-c", "env > /etc/environment ; /usr/bin/supervisord"]
 )
 
-save(result, 'ruby2.3-a/Dockerfile')
+save(result, 'ruby2.3-lts/Dockerfile')
