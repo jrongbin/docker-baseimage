@@ -22,7 +22,7 @@ RUN set -ex \
 
 {{debian_clean}}
 
-CMD ["sh", "-c", "ossfs my-bucket /tmp/ossfs -ourl=$OSS_ENDPOINT ; /usr/bin/supervisord"]
+CMD ["sh", "-c", "ossfs $BUCKET_NAME /tmp/ossfs -ourl=$OSS_ENDPOINT ; /usr/bin/supervisord"]
 )
 
 save(result, 'ossfs/Dockerfile')
