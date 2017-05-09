@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require './tool'
 
-dpkgs = %w( gdebi-core )
+dpkgs = %w( gdebi-core mime-support )
 
 result = %q(
 FROM ubuntu:16.04
@@ -14,7 +14,7 @@ RUN apt-get update
 
 RUN set -ex \
   && wget -O /tmp/ossfs.deb "http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/32196/cn_zh/1483608175067/ossfs_1.80.0_ubuntu16.04_amd64.deb" \
-  && apt-get install /tmp/ossfs.deb \
+  && gdebi -n /tmp/ossfs.deb \
   && touch /etc/passwd-ossfs \
   && chmod 640 /etc/passwd-ossfs \
   && mkdir /tmp/ossfs \
@@ -22,7 +22,7 @@ RUN set -ex \
 
 {{debian_clean}}
 
-CMD ["sh", "-c", "ossfs $BUCKET_NAME /tmp/ossfs -ourl=$OSS_ENDPOINT ; /usr/bin/supervisord"]
+CMD ["sh", "-c", "echo $BUCKET_NAME:$ACCESS_KEY_ID:$ACCESS_KEY_SECRET > /etc/passwd-ossfs ; ossfs $BUCKET_NAME /tmp/ossfs -ourl=$OSS_ENDPOINT ; /usr/bin/supervisord"]
 )
 
 save(result, 'ossfs/Dockerfile')
