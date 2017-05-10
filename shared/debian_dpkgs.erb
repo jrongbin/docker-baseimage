@@ -1,1 +1,1 @@
-RUN apt-get install -y --no-install-recommends ca-certificates curl wget git-core htop screen apt-transport-https <%= dpkgs.join(" ") %>
+RUN apt-get install -y --no-install-recommends ca-certificates curl wget <%= dpkgs.join(" ") %>

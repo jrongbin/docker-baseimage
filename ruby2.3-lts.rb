@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require './tool'
 
-dpkgs = %w( vim rsync libmysqlclient-dev mysql-client bzip2 libfontconfig )
+dpkgs = %w( git-core htop screen apt-transport-https vim rsync libmysqlclient-dev mysql-client bzip2 libfontconfig )
 
 result = %q(
 FROM ruby:2.3

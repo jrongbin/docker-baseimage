@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 RUN apt-get update
 
 # DEBIAN_DPKGS BEGIN
-RUN apt-get install -y --no-install-recommends ca-certificates curl wget git-core htop screen apt-transport-https gdebi-core mime-support
+RUN apt-get install -y --no-install-recommends ca-certificates curl wget gdebi-core mime-support
 
 # DEBIAN_DPKGS END
 
