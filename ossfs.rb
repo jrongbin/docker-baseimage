@@ -13,7 +13,7 @@ RUN apt-get update
 {{supervisor}}
 
 RUN set -ex \
-  && wget -O /tmp/ossfs.deb "http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/32196/cn_zh/1483608175067/ossfs_1.80.0_ubuntu16.04_amd64.deb" \
+  && wget -O /tmp/ossfs.deb "http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/32196/cn_zh/1496671459961/ossfs_1.80.2_ubuntu16.04_amd64.deb" \
   && gdebi -n /tmp/ossfs.deb \
   && touch /etc/passwd-ossfs \
   && chmod 640 /etc/passwd-ossfs \
